@@ -9,15 +9,12 @@ public class switchHand : MonoBehaviour
     public GameObject rayHand;
     InputDevice device;
 
-    bool directEnabled;
-
     bool previousTriggerValue;
+    bool previousGripValue;
 
     void Start()
     {
         updateDevices();
-
-        directEnabled = true;
 
         directHand.SetActive(true);
         rayHand.SetActive(false);
@@ -26,24 +23,28 @@ public class switchHand : MonoBehaviour
     private void Update()
     {
         bool triggerValue;
-        if (device.TryGetFeatureValue(CommonUsages.secondaryButton, out triggerValue)) {
+        if (device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerValue)) {
 
             if (triggerValue && !previousTriggerValue)
             {
-                if (directEnabled)
-                {
-                    directHand.SetActive(true);
-                    rayHand.SetActive(false);
-                } else
-                {
-                    directHand.SetActive(false);
-                    rayHand.SetActive(true);
-                }
-
-                directEnabled = !directEnabled;
+                directHand.SetActive(false);
+                rayHand.SetActive(true);
             }
 
             previousTriggerValue = triggerValue;
+        }
+
+        bool gripValue;
+        if (device.TryGetFeatureValue(CommonUsages.gripButton, out gripValue))
+        {
+
+            if (gripValue && !previousGripValue)
+            {
+                directHand.SetActive(true);
+                rayHand.SetActive(false);
+            }
+
+            previousGripValue = gripValue;
         }
     }
 
