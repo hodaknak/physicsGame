@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Assets/template.unity
-    guid: c495221fb2997487fbdb14bc392f030d
-  - enabled: 0
-    path: Assets/Assets/Modules/test.unity
-    guid: 6b61104d145194c60bc0fbea9b9891be
+    path: Assets/Assets/Modules/lobby.unity
+    guid: 18d76d40f7a4f4a6e8fca5da5d9c08dc
+  - enabled: 1
+    path: Assets/Assets/Modules/gravity.unity
+    guid: 1f99b2b1da6014abf8fbede4bfe8d0e7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 77ddd90f2c042421da4b2b2008561e42, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: c9efa3dd72d39426a9f57b890ed7673d, type: 2}
