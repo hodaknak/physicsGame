@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6900495699178270939}
   m_Layer: 7
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdaca1202d9a84cd7992a92be7ac7575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 1
 --- !u!54 &6900495699178270943
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6900495699178270931}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a3fc5c8fc6a1b4adc9e5bf29adf29841, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

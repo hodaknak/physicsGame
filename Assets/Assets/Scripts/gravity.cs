@@ -8,6 +8,10 @@ public class gravity : MonoBehaviour
 
     bool inGravityZone;
 
+    public float mass = 1f;
+
+    const float gravConst = 8f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +23,7 @@ public class gravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1490364f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.08f);
 
         inGravityZone = false;
         rb.useGravity = true;
@@ -33,7 +37,22 @@ public class gravity : MonoBehaviour
             }
         }
 
+        if (inGravityZone)
+        {
+            GameObject[] bodies = GameObject.FindGameObjectsWithTag("body");
 
+            Vector3 force = new Vector3();
+
+            foreach (GameObject body in bodies)
+            {
+                if (body != gameObject)
+                    force += (body.transform.position - transform.position).normalized * (mass * body.GetComponent<gravity>().mass) / (transform.position - body.transform.position).sqrMagnitude;
+            }
+
+            force *= Time.deltaTime * gravConst;
+
+            rb.AddForce(force);
+        }
     }
 
     /*
