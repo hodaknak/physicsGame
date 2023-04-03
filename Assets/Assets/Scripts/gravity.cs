@@ -6,6 +6,8 @@ public class gravity : MonoBehaviour
 {
     Rigidbody rb;
 
+    Collider thisCollider;
+
     bool inGravityZone;
 
     public float mass = 1f;
@@ -16,6 +18,8 @@ public class gravity : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        thisCollider = GetComponent<SphereCollider>();
 
         inGravityZone = false;
     }
@@ -52,6 +56,14 @@ public class gravity : MonoBehaviour
             force *= Time.deltaTime * gravConst;
 
             rb.AddForce(force);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("body"))
+        {
+            Physics.IgnoreCollision(thisCollider, collision.collider, true);
         }
     }
 
