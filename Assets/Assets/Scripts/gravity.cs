@@ -18,6 +18,7 @@ public class gravity : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.mass = mass;
 
         thisCollider = GetComponent<SphereCollider>();
 
@@ -55,7 +56,7 @@ public class gravity : MonoBehaviour
 
             force *= Time.deltaTime * gravConst;
 
-            rb.AddForce(force);
+            rb.AddForce(Vector3.ClampMagnitude(force, mass * 50));
         }
     }
 

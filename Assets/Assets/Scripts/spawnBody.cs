@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class spawnBody : MonoBehaviour
 {
+    public float mass = 1;
+
     [SerializeField]
     GameObject body;
 
@@ -12,6 +14,6 @@ public class spawnBody : MonoBehaviour
 
     public void spawn()
     {
-        Instantiate(body, coord, Quaternion.identity);
+        Instantiate(body, coord, Quaternion.identity).GetComponent<gravity>().mass = mass;
     }
 }
