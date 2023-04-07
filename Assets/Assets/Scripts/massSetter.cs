@@ -16,7 +16,12 @@ public class massSetter : MonoBehaviour
 
     public void onClick()
     {
-        spawnBodyButton.mass += multiplier;
-        massDisplay.SetText(spawnBodyButton.mass.ToString());
+        float newMass = spawnBodyButton.mass + multiplier;
+
+        if (1 <= newMass && newMass <= 20)
+        {
+            spawnBodyButton.mass = newMass;
+            massDisplay.SetText(spawnBodyButton.mass.ToString());
+        }
     }
 }

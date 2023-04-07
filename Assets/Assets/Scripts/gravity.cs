@@ -12,7 +12,7 @@ public class gravity : MonoBehaviour
 
     public float mass = 1f;
 
-    const float gravConst = 8f;
+    const float gravConst = 4f;
 
     // Start is called before the first frame update
     void Start()
