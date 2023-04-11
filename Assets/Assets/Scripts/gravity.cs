@@ -8,6 +8,8 @@ public class gravity : MonoBehaviour
 
     Collider thisCollider;
 
+    TrailRenderer trailRenderer;
+
     bool inGravityZone;
 
     public float mass = 1f;
@@ -17,12 +19,19 @@ public class gravity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
         rb.mass = mass;
 
         thisCollider = GetComponent<SphereCollider>();
 
         inGravityZone = false;
+
+        trailRenderer = GetComponent<TrailRenderer>();
+
+        float scale = Mathf.Pow(2f, mass / 10f - 1f) * 0.1490364f;
+
+        transform.localScale = new Vector3(scale, scale, scale);
     }
 
     // Update is called once per frame
@@ -44,6 +53,8 @@ public class gravity : MonoBehaviour
 
         if (inGravityZone)
         {
+            thisCollider.material.bounceCombine = PhysicMaterialCombine.Maximum;
+
             GameObject[] bodies = GameObject.FindGameObjectsWithTag("body");
 
             Vector3 force = new Vector3();
@@ -57,24 +68,21 @@ public class gravity : MonoBehaviour
             force *= Time.deltaTime * gravConst;
 
             rb.AddForce(Vector3.ClampMagnitude(force, mass * 50));
+
+            trailRenderer.enabled = true;
+        } else
+        {
+            thisCollider.material.bounceCombine = PhysicMaterialCombine.Average;
+
+            trailRenderer.enabled = false;
         }
     }
-
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("body"))
         {
             Physics.IgnoreCollision(thisCollider, collision.collider, true);
-        }
-    }
-
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("zone"))
-        {
-            inGravityZone = true;
-            rb.useGravity = false;
         }
     }*/
 
