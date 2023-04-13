@@ -5,7 +5,7 @@ using TMPro;
 
 public class massSetter : MonoBehaviour
 {
-    [SerializeField, Range(-1, 1)]
+    [SerializeField]
     int multiplier;
 
     [SerializeField]

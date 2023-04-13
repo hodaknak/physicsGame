@@ -29,7 +29,7 @@ public class gravity : MonoBehaviour
 
         trailRenderer = GetComponent<TrailRenderer>();
 
-        float scale = Mathf.Pow(2f, mass / 10f - 1f) * 0.1490364f;
+        float scale = 0.00745182f * mass + 0.0745182f;
 
         transform.localScale = new Vector3(scale, scale, scale);
     }

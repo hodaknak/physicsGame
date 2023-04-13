@@ -6,6 +6,8 @@ public class spawnBody : MonoBehaviour
 {
     public float mass = 1;
 
+    public bool stationary = false;
+
     [SerializeField]
     GameObject body;
 
